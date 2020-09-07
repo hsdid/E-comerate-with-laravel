@@ -1,0 +1,141 @@
+html,
+body {
+  background-color: #fff;
+  color: #636b6f;
+  font-family: "Nunito", sans-serif;
+  font-weight: 200;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 84px;
+}
+
+.text {
+  color: #101;
+  padding: 0 25px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.links > a {
+  color: #101;
+  padding: 0 25px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.links > a:hover {
+  text-decoration: underline;
+}
+
+.m-b-md {
+  margin-bottom: 30px;
+}
+
+.product-name {
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+}
+
+.product {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  border: black solid 1px;
+}
+
+.product-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+  height: 5%;
+}
+
+.nav-link {
+  border: black solid 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-product-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 50%;
+}
+
+.descript {
+  border: black solid 1px;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.btn {
+  border: black solid 1px;
+  height: 5%;
+  background: #fff;
+  display: block;
+  width: 100%;
+}
+
+.height {
+  height: 40px;
+}
+
+.btn:hover {
+  text-decoration: underline;
+}
+
+.mt-2 {
+  margin-top: 20px;
+}
+
+.mb-2 {
+  margin-bottom: 20px;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 5%;
+  border-bottom: #101 solid 1px;
+}
+
+.hei-5 {
+  height: 5%;
+}
+
