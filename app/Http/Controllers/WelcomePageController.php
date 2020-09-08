@@ -17,6 +17,8 @@ class WelcomePageController extends Controller
         $products = Product::inRandomOrder()->take(8)->get();
         $incart = Cart::all();
         $incart = $incart->count();
+        // $incart = new Cart;
+        // $incart->inCart();
 
         return view("welcome")->with([
 

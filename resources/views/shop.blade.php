@@ -20,8 +20,8 @@
                 @foreach ($products as $product) 
                     <div class="product">
                         <img src="{{url('/img/microsoft-surface-prox.jpg')}}" width="200" alt="product">   
-                        <a href="/shop/{{$product->slug}}" class="product-name">{{$product->name}}</a>  
-                        <div class="product-price">{{$product->presentPrice()}}</div>
+                        <a href="/shop/{{$product->slug}}" class="text">{{$product->name}}</a>  
+                        <div class=" text">{{$product->presentPrice()}}</div>
                     </div>
                 @endforeach
 

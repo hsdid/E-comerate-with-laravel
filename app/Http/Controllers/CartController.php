@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\SaveForLater;
 use App\Product;
 use App\Cart;
 use Illuminate\Http\Request;
@@ -68,10 +69,10 @@ class CartController extends Controller
         $addTocart->product_name = $request->name;
         $addTocart->product_price = $request->price;
         
+        $addTocart->save();
+
         $products = Cart::all();
         $incart = $products->count();
-
-        $addTocart->save();
 
         return redirect()->route('cart.index')->with([
             'succes_message' => 'Item was added to your cart!',
@@ -127,5 +128,27 @@ class CartController extends Controller
 
         return back()->with('succes_message','Item was removed from your cart!');
        
+    }
+
+    /**
+     * Switch item for shoping cart toSave for later
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function switchToSaveForLater($id)
+    {
+        $item = Cart::findOrFail($id);
+        
+
+        $saveitem = new SaveForLater;
+        $saveitem->id = $item->id;
+        $saveitem->product_name = $item->product_name;
+        $saveitem->product_price = $item->product_price;
+        $saveitem->save();
+       
+        $item->delete();
+
+        return redirect()->route('cart.index')->with('succes_message','Item has been saved!');
+
     }
 }

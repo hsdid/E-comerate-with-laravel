@@ -39,7 +39,7 @@
                     <div class="product">
                         <img src="{{url('/img/microsoft-surface-prox.jpg')}}" width="200" alt="product">
                         <a href="/shop/{{$product->slug}}" class="product-name">{{$product->name}}</a>    
-                        <div class="product-price">{{$product->presentPrice()}}</div>
+                        <div class=" text">{{$product->presentPrice()}}</div>
                     </div>
                 @endforeach
 
@@ -48,7 +48,7 @@
             {{-- <button class="btn text"> show more </button> --}}
             
             <div class="descript hei-5" >
-                <a href="/shop" class="text"> show more</a>
+                <a href="/shop" class="text btn-no-border"> show more</a>
             </div>
 
             @include('inc.footer')

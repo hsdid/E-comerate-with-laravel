@@ -12,9 +12,9 @@
         
         @foreach ($mightAlsoLike as $product) 
             <div class="product">
-                <img src="{{url('/img/microsoft-surface-prox.jpg')}}" width="200" alt="product">   
+                <img src="{{url('/img/microsoft-surface-prox.jpg')}}" width="150" alt="product">   
                 <a href="/shop/{{$product->slug}}" class="product-name">{{$product->name}}</a>  
-                <div class="product-price">{{$product->presentPrice()}}</div>
+                <div class="text">{{$product->presentPrice()}}</div>
             </div>
         @endforeach
 

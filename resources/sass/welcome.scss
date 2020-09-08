@@ -109,7 +109,7 @@ body {
 .single-product-page {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 50%;
+    height: 45%;
 }
 .descript {
   border: black solid 1px;
@@ -153,6 +153,12 @@ body {
   //border: #101 solid 1px;
   border-bottom: #101 solid 1px;
 }
+.buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+}
 .hei-5{
   height: 5%;
 }
@@ -164,7 +170,7 @@ body {
 }
 .btn-no-border{
   background: #fff;
-  display: block;
+  //display: block;
   border: none;
   text-align: center;
   justify-content: center;
