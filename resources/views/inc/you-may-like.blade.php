@@ -7,7 +7,7 @@
         <li class="nav-link"><a href="#">Monitors</a> </li>
         <li class="nav-link"><a href="#">Computer parts</a> </li>
     </div> --}}
-    <h4 class="text mt-2">You also might like</h4>
+    <h4 class="text ">You also might like</h4>
     <div class="product-body">
         
         @foreach ($mightAlsoLike as $product) 

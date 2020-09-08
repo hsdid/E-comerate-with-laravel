@@ -2,7 +2,7 @@
 
 @section('content')
     
-        <div class="content">
+        <div class="content ">
             
             <div>
                 <a class="text btn " style="height: 5%;" href="{{route('shop.index')}}">Contrnue Shoping</a>
@@ -53,10 +53,9 @@
                 <div class="text descript" style="height: 5%;">
                    
                    Total price {{$totalPrice}}
+                <a href="{{ route('checkout.index')}}" class="btn-no-border text">chechout</a>
                 </div>
                 
-               
-
                 @include('inc.you-may-like')
                 @include('inc.footer')
         </div>

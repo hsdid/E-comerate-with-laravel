@@ -4,13 +4,7 @@
     
         <div class="content">
             
-            {{-- <h4 class="text">categories</h4>
-            <div class="links m-b-md nav-grid">
-                <li class="nav-link"><a href="#">Laptops</a> </li>
-                <li class="nav-link"><a href="#">Phones</a> </li>
-                <li class="nav-link"><a href="#">Monitors</a> </li>
-                <li class="nav-link"><a href="#">Computer parts</a> </li>
-            </div> --}}
+           
             <h4 class="text">product</h4>
             <div class="single-product-page">
                 

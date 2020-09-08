@@ -155,6 +155,11 @@ body {
   height: 33%;
 }
 
+.checkout-products {
+  grid-template-rows: 1fr;
+  height: 33%;
+}
+
 .btn-no-border {
   background: #fff;
   border: none;
@@ -165,5 +170,38 @@ body {
 .btn-no-border:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.chekout-page {
+  display: grid;
+  grid-template-columns: 20% 30% 30% 20%;
+}
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+
+.StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
 }
 
