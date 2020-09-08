@@ -17,6 +17,8 @@ class CartController extends Controller
     {
         $mightAlsoLike = Product::MightAlsoLike()->get();
         $products = Cart::all();
+        
+        $incart = $products->count();
         $totalPrice = 0;
 
         //take only product_price
@@ -37,7 +39,8 @@ class CartController extends Controller
         return view('cart')->with([
             'mightAlsoLike' => $mightAlsoLike,
             'products' => $products,
-            'totalPrice' => $totalPrice
+            'totalPrice' => $totalPrice,
+            'incart' => $incart
         ]);
        
     }
@@ -64,10 +67,16 @@ class CartController extends Controller
         $addTocart->id = $request->id;
         $addTocart->product_name = $request->name;
         $addTocart->product_price = $request->price;
+        
+        $products = Cart::all();
+        $incart = $products->count();
 
         $addTocart->save();
 
-        return redirect()->route('cart.index')->with('succes_message','Item was added to your cart!');
+        return redirect()->route('cart.index')->with([
+            'succes_message' => 'Item was added to your cart!',
+            'incart' => $incart
+        ]);
     }
 
     /**

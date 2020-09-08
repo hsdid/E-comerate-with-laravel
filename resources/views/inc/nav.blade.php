@@ -4,7 +4,11 @@
     <a class="nav-link" href="/">Ecomerate</a>
     <a class="nav-link" href="/shop">Shop</a>
     <a class="nav-link" href="#">About</a>
-    <a class="nav-link" href="/cart">Cart</a>
+    <a class="nav-link" href="/cart">Cart
+        @if ($incart > 0)
+        ({{$incart}})
+        @endif
+        </a>
 </div>
 
 

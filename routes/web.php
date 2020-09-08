@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //Route::view('/', 'welcome');
 Route::get('/', 'WelcomePageController@index');
 
-Route::get('/shop', 'ShopController@index');
+Route::get('/shop', 'ShopController@index')->name('shop.index');
 Route::get('/shop/{product}', 'ShopController@show');
 
 //Route::view('/product', 'product');

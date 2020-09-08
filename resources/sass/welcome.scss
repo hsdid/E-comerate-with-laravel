@@ -44,6 +44,7 @@ body {
   letter-spacing: 0.1rem;
   text-decoration: none;
   text-transform: uppercase;
+
 }
 .links > a {
   //color: #636b6f;
@@ -122,8 +123,12 @@ body {
   border: black solid 1px;
   height: 5%;
   background: #fff;
-  display: block;
-  width: 100%;
+  
+  justify-content: center;
+  align-items: center;
+  display: grid;
+
+ // width: 100%;
 }
 .height{
   height: 40px;
@@ -154,17 +159,19 @@ body {
 ///cart
 .cart-page{
   display: grid;
-  grid-template-rows: 30% 30%;
-  height: 50%;
+  grid-template-rows: 1fr;
+  height: 33%;
 }
 .btn-no-border{
   background: #fff;
   display: block;
   border: none;
+  text-align: center;
+  justify-content: center;
 }
 .btn-no-border:hover{
   cursor: pointer;
-
+  text-decoration: underline;
 }
 
 

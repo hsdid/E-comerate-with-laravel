@@ -108,8 +108,9 @@ body {
   border: black solid 1px;
   height: 5%;
   background: #fff;
-  display: block;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: grid;
 }
 
 .height {
@@ -129,6 +130,8 @@ body {
 }
 
 .footer {
+  justify-content: center;
+  align-items: center;
   display: grid;
   grid-template-columns: 1fr;
   height: 5%;
@@ -137,5 +140,24 @@ body {
 
 .hei-5 {
   height: 5%;
+}
+
+.cart-page {
+  display: grid;
+  grid-template-rows: 1fr;
+  height: 33%;
+}
+
+.btn-no-border {
+  background: #fff;
+  display: block;
+  border: none;
+  text-align: center;
+  justify-content: center;
+}
+
+.btn-no-border:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 

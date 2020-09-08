@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Cart;
 use Illuminate\Http\Request;
 
 
@@ -16,8 +17,13 @@ class ShopController extends Controller
     public function index()
     {
         $products = Product::inRandomOrder()->take(12)->get();
+        $incart = Cart::all();
+        $incart = $incart->count();
 
-        return view('shop')->with('products',$products);
+        return view('shop')->with([
+            'products' => $products,
+            'incart' => $incart
+        ]);
     }
 
     
@@ -32,11 +38,16 @@ class ShopController extends Controller
     {
         $product = Product::where('slug',$slug)->firstOrFail();
         $mightAlsoLike = Product::where('slug','!=',$slug)->MightAlsoLike()->take(4)->get();
+        $incart = Cart::all();
+        $incart = $incart->count();
 
         return view('product')->with([
             
             'product' => $product,
-            'mightAlsoLike' => $mightAlsoLike
+            'mightAlsoLike' => $mightAlsoLike,
+            'incart' => $incart
+        
+
 
         ]);
     }
