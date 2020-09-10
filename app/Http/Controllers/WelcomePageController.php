@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class WelcomePageController extends Controller
 {
+    
+    public $cart;
+    
+    public function __construct(){
+        
+        $this->cart = new Cart();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,10 +22,8 @@ class WelcomePageController extends Controller
     public function index()
     {
         $products = Product::inRandomOrder()->take(8)->get();
-        $incart = Cart::all();
-        $incart = $incart->count();
-        // $incart = new Cart;
-        // $incart->inCart();
+       
+        $incart = $this->cart->inCart();
 
         return view("welcome")->with([
 

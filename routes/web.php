@@ -33,7 +33,7 @@ Route::post('/cart/switchToSaveForLater/{product}','CartController@switchToSaveF
 
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 
-
+Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
 
 
 Route::view('/thankyou', 'thankyou');

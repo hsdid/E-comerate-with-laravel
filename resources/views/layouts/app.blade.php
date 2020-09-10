@@ -27,7 +27,7 @@
 <body>
     <div id="app">
         
-        @include('inc.nav')
+        {{-- @include('inc.nav') --}}
       
         <div class="container">
             @yield('content')

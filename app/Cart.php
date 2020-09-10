@@ -20,4 +20,23 @@ class Cart extends Model
        
         return $incart;
     }
+    public function totalPrice(){
+        
+        $products = Cart::all();
+
+        $totalPrice = 0;
+
+        foreach($products as $value) {
+            $prices[] = $value->product_price;
+        }
+        if(isset($prices)){
+            foreach($prices as $value)
+                $totalPrice += $value;
+        }
+
+        return '$'.number_format($totalPrice / 100, 2);
+    }
 }
+
+
+

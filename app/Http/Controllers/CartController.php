@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    
+    public $cart;
+
+    public function __construct(){
+        $this->cart = new Cart();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,24 +25,9 @@ class CartController extends Controller
         $mightAlsoLike = Product::MightAlsoLike()->get();
         $products = Cart::all();
         
-        $incart = $products->count();
-        $totalPrice = 0;
-
-        //take only product_price
-        foreach($products as $value)
-                $prices[] = $value->product_price;
-                
-        // count total price
-        if(isset($prices)){
-            
-            foreach($prices as $value)
-                $totalPrice += $value;
-        }
+        $incart = $this->cart->inCart();
+        $totalPrice = $this->cart->totalPrice();
         
-        
-        //formating total price
-        $totalPrice = '$'.number_format($totalPrice / 100, 2);
-
         return view('cart')->with([
             'mightAlsoLike' => $mightAlsoLike,
             'products' => $products,
@@ -64,15 +55,17 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $addTocart = new Cart;
-        $addTocart->id = $request->id;
-        $addTocart->product_name = $request->name;
-        $addTocart->product_price = $request->price;
+        // add product to cart
+        $this->cart->id = $request->id;
+        $this->cart->product_name = $request->name;
+        $this->cart->product_price = $request->price;
         
-        $addTocart->save();
+        $this->cart->save();
+       
 
         $products = Cart::all();
-        $incart = $products->count();
+        
+        $incart = $this->cart->inCart();
 
         return redirect()->route('cart.index')->with([
             'succes_message' => 'Item was added to your cart!',

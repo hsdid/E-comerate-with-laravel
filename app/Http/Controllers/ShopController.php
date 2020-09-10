@@ -9,16 +9,23 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    
+    public $cart;
+
+    public function __construct(){
+        $this->cart = new Cart();
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+     public function index()
     {
         $products = Product::inRandomOrder()->take(12)->get();
-        $incart = Cart::all();
-        $incart = $incart->count();
+       
+        $incart = $this->cart->inCart();
 
         return view('shop')->with([
             'products' => $products,
@@ -37,9 +44,10 @@ class ShopController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug',$slug)->firstOrFail();
+        
         $mightAlsoLike = Product::where('slug','!=',$slug)->MightAlsoLike()->take(4)->get();
-        $incart = Cart::all();
-        $incart = $incart->count();
+        
+        $incart = $this->cart->inCart();
 
         return view('product')->with([
             

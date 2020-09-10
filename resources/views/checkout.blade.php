@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@include('inc.nav')
 @section('extra-css')
     <script src="https://js.stripe.com/v3/"></script>
 @endsection
@@ -16,40 +16,40 @@
                 </div>
                <div class="text descript">
                 <h4>Checkout</h4>
-                <form action="" method="POST" id="payment-form">
+               <form action="{{route('checkout.store')}}" method="POST" id="payment-form">
                         {{ csrf_field() }}
                         
                         <div class="descript mt-2">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required >
+                                <input type="text" class="form-control" style="border: none;" id="name" name="name" value="{{ old('name') }}" required >
                         </div>
                         <div class="descript mt-2">
                                 <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}" required>
+                                <input type="text" class="form-control" style="border: none;" id="address" name="address" value="{{ old('address') }}" required>
                         </div>
                        
                         <div class="descript mt-2">
                                 <label for="city">City</label>
-                                <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}" required>
+                                <input type="text" class="form-control" style="border: none;" id="city" name="city" value="{{ old('city') }}" required>
                         </div>
                         <div class="descript mt-2">
                                 <label for="province">Province</label>
-                                <input type="text" class="form-control" id="province" name="province" value="{{ old('province') }}" required>
+                                <input type="text" class="form-control" style="border: none;" id="province" name="province" value="{{ old('province') }}" required>
                         </div>
                              <!-- end half-form -->
                         <div class="descript mt-2">
                                 <label for="postalcode">Postal Code</label>
-                                <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{ old('postalcode') }}" required>
+                                <input type="text" class="form-control" style="border: none;" id="postalcode" name="postalcode" value="{{ old('postalcode') }}" required>
                         </div>
                         <div class="descript mt-2">
                                 <label for="phone">Phone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
+                                <input type="text" class="form-control" style="border: none;" id="phone" name="phone" value="{{ old('phone') }}" required>
                         </div>
                         <h4>Payment Details</h4>
 
                         <div class="descript ">
                                 <label for="name_on_card">Name on Card</label>
-                                <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
+                                <input type="text" class="form-control" style="border: none;" id="name_on_card" name="name_on_card" value="">
                                 
                         </div>
                         <div class="descript mt-2">
@@ -80,20 +80,16 @@
                                 
                                 {{-- <div class="product-price">{{$product->presentPrice()}}</div> --}} 
                                 
-                                <div class="buttons">
-                                <form action="{{route('cart.destroy',$product->id )}}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                
-                                        <button type="submit" class="btn-no-border  text">remove</button>
-                                
-                                </form> 
-                                
-                                {{-- <form action="{{route('cart.switchToSaveForLater',$product->id )}}" method="POST">
-                                        {{ csrf_field() }}
-                                
-                                        <button type="submit" class="btn-no-border text">Save</button>
-                                </form>  --}}
+                                <div class="">
+                                        
+                                        <form action=" {{route('cart.destroy',$product->id )}} " method="POST">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                        
+                                                <button type="submit" class="btn-no-border text">remove</button>
+                                        
+                                        </form> 
+                                        
                                 </div>
                         </div>
                         <div class="text descript ">
@@ -173,7 +169,15 @@
         form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        stripe.createToken(card).then(function(result) {
+        var options = {
+                name: document.getElementById('name_on_card').value,
+                address_line1: document.getElementById('address').value,
+                address_city: document.getElementById('city').value,
+                address_state: document.getElementById('province').value,
+                address_zip: document.getElementById('postalcode').value,
+        }
+
+        stripe.createToken(card,options).then(function(result) {
         if (result.error) {
         // Inform the user if there was an error.
         var errorElement = document.getElementById('card-errors');
