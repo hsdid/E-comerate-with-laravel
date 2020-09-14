@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //Route::view('/', 'welcome');
-Route::get('/', 'WelcomePageController@index');
+Route::get('/', 'WelcomePageController@index')->name('welcome.index');
 
 Route::get('/shop', 'ShopController@index')->name('shop.index');
 Route::get('/shop/{product}', 'ShopController@show');
@@ -31,7 +31,8 @@ Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy')
 ///quantity
 Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
 
-Route::post('/cart/switchToSaveForLater/{product}','CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
+Route::post('/cart/switchToSaveForLater/{product_id}/{user_id}','CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
+
 //return proucts in save for later cart
 Route::get('/saved','SaveForLaterController@index')->name('saved.index');
 //remove item from save cart
@@ -43,3 +44,10 @@ Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
 
 
 Route::view('/thankyou', 'thankyou');
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+

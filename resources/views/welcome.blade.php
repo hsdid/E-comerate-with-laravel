@@ -11,7 +11,7 @@
             <div class="top-right links">
                 @auth
                     <a href="{{ url('/home') }}">Home</a>
-                @else
+        @else
                     <a href="{{ route('login') }}">Login</a>
 
                     @if (Route::has('register'))
@@ -33,7 +33,13 @@
                         <a class="text btn-no-border ml-1 " href="/shop">Shop</a>
                     </div>
                     <div class="nav-link toright" > 
-                        <a class="text btn-no-border"  href="/saved">Saved</a> 
+                        {{-- <a class="text btn-no-border"  href="/register">reg</a>  --}}
+                        <a class="text btn-no-border "  href="/login">log in</a> 
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                            <button type="submit" class="btn-no-border text ml-2">log out</button>
+                        </form>
+                        <a class="text btn-no-border ml-2"  href="/saved">Saved</a> 
                         <a class="text btn-no-border ml-2 mr-2  {{$incart == 0 ? 'isDisabled' : 'active'}} " href="/cart" ><i class="fas fa-shopping-bag  "></i>  @if ($incart > 0) ({{$incart}}) @endif </a>
                         
                     </div>

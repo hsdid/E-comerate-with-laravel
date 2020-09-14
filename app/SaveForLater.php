@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class SaveForLater extends Model
 {
@@ -11,8 +12,10 @@ class SaveForLater extends Model
 
     public function inSaved(){
         
-        $products = SaveForLater::all();
+        $current_user_id = Auth::id();
+        $products = SaveForLater::where('user_id',$current_user_id)->get();
         $inSaved = $products->count();
+
         
         return $inSaved;
     }

@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SaveForLater;
 use App\Cart;
+use Auth;
 
 class SaveForLaterController extends Controller
 {
@@ -26,13 +27,14 @@ class SaveForLaterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $products = SaveForLater::all();
+    {   
+        $current_user_id = Auth::id();
+        $products = SaveForLater::where('user_id',$current_user_id)->get();
         $inSaved = $this->saved->inSaved();
         $incart = $this->cart->inCart();
 
         return view('SavedForLater')->with([
-            'products'=>$products,
+            'products' => $products,
             'inSaved' => $inSaved,
             'incart' => $incart
         ]);

@@ -156,12 +156,15 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function switchToSaveForLater($id)
+    public function switchToSaveForLater($product_id,$user_id)
     {
-        $item = Cart::findOrFail($id);
-    
+        $item = Cart::findOrFail($product_id);
+        
+
         $saveitem = new SaveForLater;
+        
         $saveitem->id = $item->id;
+        $saveitem->user_id = $user_id;
         $saveitem->product_name = $item->product_name;
         $saveitem->product_price = $item->product_price;
         $saveitem->image = $item->image;
@@ -170,6 +173,6 @@ class CartController extends Controller
         $item->delete();
 
         return redirect()->route('cart.index')->with('succes_message','Item has been saved!');
-
+        
     }
 }

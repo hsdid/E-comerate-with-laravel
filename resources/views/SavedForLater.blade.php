@@ -3,8 +3,8 @@
 
 @section('content')
     
-        <div class="content ">
-            
+        <div class="content">
+        @if (Auth::check())
             <div>
                 <a class="text btn " style="height: 5%;" href="{{route('shop.index')}}">Contrnue Shoping</a>
             </div>
@@ -18,7 +18,7 @@
                     <div class="cart-page">
                     
                         <div class="product">
-                        <img src="{{$product->image}}" width="200" alt="product">
+                            <img src="{{$product->image}}" width="200" alt="product">
                                 
                             <div class="buttons">
                                 <form action="{{route('saved.destroy',$product->id )}}" method="POST">
@@ -40,15 +40,13 @@
             @else
             <h4 class="text"> is empty</h4>
             @endif
-            
-                {{-- <div class="text descript" style="height: 5%;">
-                   
-                   Total price {{$totalPrice}}
-                <a href="{{ route('checkout.index')}}" class="btn-no-border text">chechout</a>
-                </div> --}}
-                
-                {{-- @include('inc.you-may-like') --}}
+                    
+               
                 @include('inc.footer')
+        @else
+            <h4 class="text">you have to be logged</h4>
+            <a class="text btn-no-border "  href="/login">log in here</a> 
+        @endif
         </div>
-    {{-- </div> --}}
+   
 @endsection

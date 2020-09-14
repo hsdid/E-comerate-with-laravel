@@ -53,12 +53,17 @@
                                             
                                                 <button type="submit" class="btn-no-border text">remove</button>
                                             </form> 
+                                        @if (Auth::check())
+                                            {{$userId = Auth::id()}}
                                             
-                                            <form action="{{route('cart.switchToSaveForLater',$product->id )}}" method="POST">
+                                            <form action="{{route('cart.switchToSaveForLater',['product_id' =>$product->id ,'user_id' => $userId]) }}" method="POST">
                                                 {{ csrf_field() }}
-                                            
+
                                                 <button type="submit" class="btn-no-border text">Save</button>
                                             </form> 
+                                        @else 
+                                            <button type="submit" class="btn-no-border text" disabled>Save</button>
+                                        @endif
                                         </div>
                                     </div>
                                     <div class="text descript ">
@@ -98,13 +103,15 @@
 
             Array.from(classname).forEach(function(element){
                 element.addEventListener('change',function(){
-                    const id = element.getAttribute('data-id')
                     
+                    const id = element.getAttribute('data-id')
+                   
                     axios.patch(`/cart/${id}`, {
                        quantity: this.value
+                       //console.log(quantity)
                     })
                     .then(function (response) {
-                        //console.log(response);
+                        console.log(response);
                         window.location.href = "{{ route('cart.index') }}"
                     })
                     .catch(function (error) {

@@ -9,26 +9,6 @@ body {
   padding: 0;
 }
 
-.full-height {
-  height: 100vh;
-}
-
-.flex-center {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-// .position-ref {
-//   position: relative;
-// }
-
-// .top-right {
-//   position: absolute;
-//   right: 10px;
-//   top: 18px;
-// }
-
 .content {
   text-align: center;
 }
@@ -46,23 +26,8 @@ body {
   text-transform: uppercase;
 
 }
-.links > a {
-  //color: #636b6f;
-  color: #101;
-  padding: 0 25px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-.links > a:hover {
-  text-decoration: underline;
-}
 
-.m-b-md {
-  margin-bottom: 30px;
-}
+
 // product
 
 
@@ -79,13 +44,7 @@ body {
 
   // category navbar
 
-.nav-grid{
- 
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  text-align: center;
-  height: 5%;
-}
+
 .nav-link {
   border-bottom: black solid 1px;
   display: flex;
@@ -94,34 +53,7 @@ body {
   
 }
 
-//product page
-.single-product-page {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 45%;
-}
-.descript {
-  border: black solid 1px;
-   
-  justify-content: center;
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1fr;
-}
-.btn { 
-  border: black solid 1px;
-  height: 5%;
-  background: #fff;
-  
-  justify-content: center;
-  align-items: center;
-  display: grid;
 
- // width: 100%;
-}
-.height{
-  height: 40px;
-}
 .btn:hover{
   text-decoration: underline;
 }
@@ -131,6 +63,7 @@ body {
 .mb-2{
   margin-bottom: 20px;
 }
+
 // footer
 
 .footer{
@@ -149,27 +82,12 @@ body {
   align-items: center;
 }
 
-///cart
-// .cart-page{
-//   display: grid;
-//   grid-template-rows: 1fr;
-//   height: 33%;
-// }
+
 .checkout-products{
   grid-template-rows: 1fr;
   height: 33%;
 }
-.btn-no-border{
-  background: #fff;
-  //display: block;
-  border: none;
-  text-align: center;
-  justify-content: center;
-}
-.btn-no-border:hover{
-  cursor: pointer;
-  text-decoration: underline;
-}
+
 .chekout-page{
   display: grid;
   grid-template-columns: 20% 30% 30% 20%;
@@ -320,6 +238,45 @@ body {
   border-right: #101 solid 1px;
   border-bottom: #101 solid 1px;
 }
+// login // register look 
+.container_log{
+  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 40px 600px; 
+  height: 100%;
+}
+
+
+
+//Butoons
+
+.btn_radius{
+ 
+  border: 1px solid #101 ;
+  border-radius: 40px;
+  background: #fff;
+  text-align: center;
+  justify-content: center;
+}
+.btn_radius:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn-no-border{
+  background: #fff;
+  //display: block;
+  border: none;
+  text-align: center;
+  justify-content: center;
+}
+.btn-no-border:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
 
 
 .bor-r{
