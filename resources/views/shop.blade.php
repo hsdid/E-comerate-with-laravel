@@ -51,7 +51,7 @@
                     <div class="product">
                       
                             {{-- <img class=" ml-auto mr-auto" src="{{url('/img/microsoft-surface-prox.jpg')}}" width="200" alt="product">  --}}
-                            <img class=" ml-auto mr-auto" src="{{$product->image}}" width="200" alt="product"> 
+                            <img class=" ml-auto mr-auto" src="{{$product->image}}" width="150" alt="product"> 
                         
 
                         <a href="/shop/{{$product->slug}}" class="text">{{$product->name}}</a>  
