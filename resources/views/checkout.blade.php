@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@include('inc.nav')
+{{-- @include('inc.nav') --}}
 @section('extra-css')
     <script src="https://js.stripe.com/v3/"></script>
 @endsection
@@ -7,112 +7,117 @@
 
 @section('content')
     
-        <div class="content chekout-page">
-            
-           
-                {{-- @include('inc.you-may-like') --}}
-                <div>
-
-                </div>
-               <div class="text descript">
-                <h4>Checkout</h4>
-               <form action="{{route('checkout.store')}}" method="POST" id="payment-form">
-                        {{ csrf_field() }}
-                        
-                        <div class="descript mt-2">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" style="border: none;" id="name" name="name" value="{{ old('name') }}" required >
-                        </div>
-                        <div class="descript mt-2">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" style="border: none;" id="address" name="address" value="{{ old('address') }}" required>
-                        </div>
-                       
-                        <div class="descript mt-2">
-                                <label for="city">City</label>
-                                <input type="text" class="form-control" style="border: none;" id="city" name="city" value="{{ old('city') }}" required>
-                        </div>
-                        <div class="descript mt-2">
-                                <label for="province">Province</label>
-                                <input type="text" class="form-control" style="border: none;" id="province" name="province" value="{{ old('province') }}" required>
-                        </div>
-                             <!-- end half-form -->
-                        <div class="descript mt-2">
-                                <label for="postalcode">Postal Code</label>
-                                <input type="text" class="form-control" style="border: none;" id="postalcode" name="postalcode" value="{{ old('postalcode') }}" required>
-                        </div>
-                        <div class="descript mt-2">
-                                <label for="phone">Phone</label>
-                                <input type="text" class="form-control" style="border: none;" id="phone" name="phone" value="{{ old('phone') }}" required>
-                        </div>
-                        <h4>Payment Details</h4>
-
-                        <div class="descript ">
-                                <label for="name_on_card">Name on Card</label>
-                                <input type="text" class="form-control" style="border: none;" id="name_on_card" name="name_on_card" value="">
-                                
-                        </div>
-                        <div class="descript mt-2">
-                                <label for="card-element">
-                                  Credit or debit card
-                                </label>
-                                <div id="card-element">
-                                  <!-- a Stripe Element will be inserted here. -->
-                                </div>
         
-                                <!-- Used to display form errors -->
-                                <div id="card-errors" role="alert"></div>
+      
+
+        <div class="container_check " style>
+                <div class="navbar text">
+                
+                        <div class="nav-link toleft" style="border-right: black solid 1px;">
+                            <a class="text  title ml-1 " href="/">Ecomerate</a>
                         </div>
-                        <button type="submit" id="complete-order" class="btn-no-border text mt-2">Complete Order</button>
-                </form>
-
-               
-
-               </div>
-               <div class="text descript">
-                        <h4>your order</h4>
-                @foreach ($products as $product)
-               
-                    <div class="checkout-products">
-                        
-                        <div class="product">
-                                {{-- <img src="{{url('/img/microsoft-surface-prox.jpg')}}" width="50" alt="product"> --}}
-                                
-                                {{-- <div class="product-price">{{$product->presentPrice()}}</div> --}} 
-                                
-                                <div class="">
+                        <div class="nav-link toleft"  style="border-right: black solid 1px;">
+                            <a class="text btn-no-border ml-1 " href="/shop">Shop</a>
+                        </div>
+                        <div class="nav-link toright" > 
+                            <a class="text btn-no-border"  href="/saved">Saved</a> 
+                            <a class="text btn-no-border ml-2 mr-2" href="/cart"><i class="fas fa-shopping-bag  "></i>  @if ($incart > 0) ({{$incart}}) @endif </a>
+                            
+                        </div>
+                </div>
+                <div class="text  cart_body">
+                        <div class="cart">
+                            checkout
+                       </div>
+                </div>
+                <div class="cart_body">
+                        <div class="cart">
+                                @foreach ($products as $product)
+                                <div class="text " style="border-bottom: #101 solid 1px;">
                                         
-                                        <form action=" {{route('cart.destroy',$product->id )}} " method="POST">
+                                        {{$product->product_name}} 
+                                        {{$product->presentPrice()}}
+                                        <div><form action=" {{route('cart.destroy',$product->id )}} " method="POST">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                         
                                                 <button type="submit" class="btn-no-border text">remove</button>
                                         
-                                        </form> 
-                                        
+                                        </form> </div>
                                 </div>
-                        </div>
-                        <div class="text descript ">
-                                {{$product->product_name}} 
-                                <div>{{$product->presentPrice()}}</div>
-                        </div>
-                        
+                                @endforeach
+                        </div>  
 
-                    </div>
-          
-            @endforeach
-                        <div class="text descript" style="height: 20%;">
-                        
-                                Total price {{$totalPrice}}
+                </div>
 
-                        </div>
-               </div>
-               <div>
-
-               </div>
                
+                <div class="text  cart_body">
+                        <div class="cart">
+                        Total price {{$totalPrice}}
+                        </div>
+                </div>
+               
+                <div class="cart_body">
+                        <div class="cart ">
+                                <form action="{{route('checkout.store')}}" method="POST" id="payment-form">
+                                        {{ csrf_field() }}
+                                        
+                                        <div class="text mt-2 ">
+                                                <label for="name">Name</label>
+                                                <input type="text" class="form-control"  id="name" name="name" value="{{ old('name') }}" required >
+                                        </div>
+                                        <div class="text mt-2">
+                                                <label for="address">Address</label>
+                                                <input type="text" class="form-control"  id="address" name="address" value="{{ old('address') }}" required>
+                                        </div>
+                                       
+                                        <div class="text mt-2">
+                                                <label for="city">City</label>
+                                                <input type="text" class="form-control"  id="city" name="city" value="{{ old('city') }}" required>
+                                        </div>
+                                        <div class="text mt-2">
+                                                <label for="province">Province</label>
+                                                <input type="text" class="form-control"  id="province" name="province" value="{{ old('province') }}" required>
+                                        </div>
+                                           
+                                        
+                                        <div class="text mt-2">
+                                                <label for="postalcode">Postal Code</label>
+                                                <input type="text" class="form-control"  id="postalcode" name="postalcode" value="{{ old('postalcode') }}" required>
+                                        </div>
+                                        <div class="text mt-2">
+                                                <label for="phone">Phone</label>
+                                                <input type="text" class="form-control"  id="phone" name="phone" value="{{ old('phone') }}" required>
+                                        </div>
+                                        <h4 class="text">Payment Details</h4>
+                
+                                        <div class="descript ">
+                                                <label for="name_on_card">Name on Card</label>
+                                                <input type="text" class="form-control"  id="name_on_card" name="name_on_card" value="">
+                                                
+                                        </div>
+                                        <div class="descript mt-2">
+                                                <label for="card-element">
+                                                  Credit or debit card
+                                                </label>
+                                                <div id="card-element">
+                                                  
+                                                </div>
+                        
+                                                
+                                                <div id="card-errors" role="alert"></div>
+                                        </div>
+                                        <button type="submit" id="complete-order" class="btn-no-border text mt-2">Complete Order</button>
+                                </form>
+                
+                        </div>
+                </div>
+
         </div>
-        @include('inc.footer')
+        
+
+        
+        {{-- @include('inc.footer') --}}
 @endsection
 
 @section('extra-js')

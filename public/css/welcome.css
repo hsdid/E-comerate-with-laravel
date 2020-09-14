@@ -23,16 +23,11 @@ body {
   text-align: center;
 }
 
-.title {
-  font-size: 84px;
-}
-
 .text {
   color: #101;
-  padding: 0 25px;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.05rem;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -55,25 +50,13 @@ body {
   margin-bottom: 30px;
 }
 
-.product-name {
-  color: black;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
-  text-decoration: none;
-}
-
 .product {
+  height: 250px;
   display: grid;
-  justify-content: center;
-  align-content: center;
-  border: black solid 1px;
-}
-
-.product-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
   text-align: center;
+  border-right: #101 solid 1px;
+  border-bottom: #101 solid 1px;
 }
 
 .nav-grid {
@@ -84,7 +67,7 @@ body {
 }
 
 .nav-link {
-  border: black solid 1px;
+  border-bottom: black solid 1px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -145,16 +128,6 @@ body {
   align-items: center;
 }
 
-.hei-5 {
-  height: 5%;
-}
-
-.cart-page {
-  display: grid;
-  grid-template-rows: 1fr;
-  height: 33%;
-}
-
 .checkout-products {
   grid-template-rows: 1fr;
   height: 33%;
@@ -203,5 +176,186 @@ body {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 125px 125px 125px 125px 125px 125px;
+  text-align: center;
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.border_div {
+  border-bottom: black solid 1px;
+  justify-content: center;
+  align-items: center;
+}
+
+.list_none {
+  list-style: none;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.container_shop {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 50px 60px auto 50px;
+  text-align: center;
+  height: 100%;
+}
+
+.category_shop {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.product-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+}
+
+.container_cart {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 40px auto 40px;
+  height: 100%;
+}
+
+.cart_body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.cart {
+  grid-column: 2/4;
+  border-left: #101 solid 1px;
+  border-right: #101 solid 1px;
+  border-bottom: #101 solid 1px;
+}
+
+.cart_product {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.container_check {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 40px auto 40px auto 40px;
+  height: 100%;
+}
+
+.product_check {
+  height: 150px;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  border-right: #101 solid 1px;
+  border-bottom: #101 solid 1px;
+}
+
+.container_product {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 40px auto 40px;
+  height: 100%;
+}
+
+.left_side {
+  grid-column: 2/3;
+  border-left: #101 solid 1px;
+  border-right: #101 solid 1px;
+  border-bottom: #101 solid 1px;
+}
+
+.right_side {
+  grid-column: 3/4;
+  border-left: #101 solid 1px;
+  border-right: #101 solid 1px;
+  border-bottom: #101 solid 1px;
+}
+
+.bor-r {
+  border-right: #101 solid 1px;
+}
+
+.bor-l {
+  border-left: #101 solid 1px;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.p-1 {
+  padding: 10px 0;
+}
+
+.p-100 {
+  padding: 100px 0;
+}
+
+.toright {
+  justify-content: flex-end;
+}
+
+.toleft {
+  justify-content: flex-start;
+}
+
+.ml-2 {
+  margin-left: 20px;
+}
+
+.mr-2 {
+  margin-right: 20px;
+}
+
+.ml-1 {
+  margin-left: 10px;
+}
+
+.mr-1 {
+  margin-right: 10px;
+}
+
+.pagination {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.isDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.isDisabled > a {
+  color: currentColor;
+  display: inline-block;
+  /* For IE11/ MS Edge bug */
+  pointer-events: none;
+  text-decoration: none;
 }
 

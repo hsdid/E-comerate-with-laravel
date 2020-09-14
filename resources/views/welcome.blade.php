@@ -1,13 +1,13 @@
 
 
 @extends('layouts.app')
-@include('inc.nav')
+{{-- @include('inc.nav') --}} 
 @section('content')
     
 
-    {{-- <div class="flex-center position-ref full-height"> --}}
+   
     
-        @if (Route::has('login'))
+        {{-- @if (Route::has('login'))
             <div class="top-right links">
                 @auth
                     <a href="{{ url('/home') }}">Home</a>
@@ -19,39 +19,34 @@
                     @endif
                 @endauth
             </div>
-        @endif
+        @endif --}}
 
-        <div class="content ">
+       
+        <div class="container">
             
-
-           
-            <h4 class="text">categories</h4>
-            <div class="links nav-grid">
-                <a class="nav-link" href="#">Laptops</a>
-                <a class="nav-link" href="#">Phones</a>
-                <a class="nav-link" href="#">Monitors</a> 
-                <a class="nav-link" href="#">Computer parts</a> 
-            </div>
-            <h4 class="text">some products</h4>
-            <div class="product-body">
-
-                @foreach ($products as $product) 
-                    <div class="product">
-                        <img src="{{url('/img/microsoft-surface-prox.jpg')}}" width="200" alt="product">
-                        <a href="/shop/{{$product->slug}}" class="product-name">{{$product->name}}</a>    
-                        <div class=" text">{{$product->presentPrice()}}</div>
+            <div class="navbar text">
+               
+                    <div class="nav-link toleft" style="border-right: black solid 1px;">
+                        <a class="text  title ml-1 " href="/">Ecomerate</a>
                     </div>
+                    <div class="nav-link toleft"  style="border-right: black solid 1px;">
+                        <a class="text btn-no-border ml-1 " href="/shop">Shop</a>
+                    </div>
+                    <div class="nav-link toright" > 
+                        <a class="text btn-no-border"  href="/saved">Saved</a> 
+                        <a class="text btn-no-border ml-2 mr-2  {{$incart == 0 ? 'isDisabled' : 'active'}} " href="/cart" ><i class="fas fa-shopping-bag  "></i>  @if ($incart > 0) ({{$incart}}) @endif </a>
+                        
+                    </div>
+              
+            </div>
+                @foreach ($categories as $category)
+                <div class="nav-link">
+                    <ul style="list-style:none;" >
+                    <li  class=" {{ request()->category == $category->slug ? 'active' : 'text'}} "><a class="text btn-no-border" href="{{ route('shop.index',['category' => $category->slug]) }}">{{$category->name}}</a></li>
+                    </ul>
+                </div>
                 @endforeach
-
-            </div>
-
-            {{-- <button class="btn text"> show more </button> --}}
-            
-            <div class="descript hei-5" >
-                <a href="/shop" class="text btn-no-border"> show more</a>
-            </div>
-
-            @include('inc.footer')
+           
         </div>
-    {{-- </div> --}}
+   
 @endsection

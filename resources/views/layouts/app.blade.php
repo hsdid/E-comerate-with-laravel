@@ -20,6 +20,9 @@
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     {{-- <link rel="stylesheet" href="./css/welcome.css"> --}}
     
+    {{-- font awsome --}}
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
     <link rel="stylesheet" href="{{asset('css/welcome.css')}}">
 
     @yield('extra-css')
@@ -29,7 +32,7 @@
         
         {{-- @include('inc.nav') --}}
       
-        <div class="container">
+        <div class="content">
             @yield('content')
         </div>
             

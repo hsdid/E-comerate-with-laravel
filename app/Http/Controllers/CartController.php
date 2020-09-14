@@ -11,9 +11,13 @@ class CartController extends Controller
 {
     
     public $cart;
+    public $saved;
 
     public function __construct(){
+        
         $this->cart = new Cart();
+        $this->saved = new SaveForLater();
+
     }
     /**
      * Display a listing of the resource.
@@ -26,6 +30,7 @@ class CartController extends Controller
         $products = Cart::all();
         
         $incart = $this->cart->inCart();
+        $inSaved = $this->saved->inSaved();
         $totalPrice = $this->cart->totalPrice();
         
         return view('cart')->with([
@@ -56,10 +61,15 @@ class CartController extends Controller
     public function store(Request $request)
     {
         // add product to cart
+        //default value for quantity is 1
+        
+
         $this->cart->id = $request->id;
         $this->cart->product_name = $request->name;
         $this->cart->product_price = $request->price;
-        
+        $this->cart->qty = 1;
+        $this->cart->image = $request->image;
+
         $this->cart->save();
        
 
@@ -104,7 +114,25 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        // $validator = Validator::make($request->all() ,[
+        //     'quantity' => 'required',
+        // ]);   
+
+        // if($validator->fails()) {
+        //     session()->flash('error_message','Quantity must be between 1 and 5.');
+        //     return response()->json(['succes' => false]);
+        // }
+        
+        $product = Product::findOrFail($id);
+        
+        Cart::where('id',$id)->update([
+            'qty' => $request->quantity,
+            'product_price' => ($product->price *  $request->quantity)
+        ]);
+        
+        session()->flash('success_message', 'Quantity was updated succesfully!');
+        return response()->json(['succes' => true]);
     }
 
     /**
@@ -131,12 +159,12 @@ class CartController extends Controller
     public function switchToSaveForLater($id)
     {
         $item = Cart::findOrFail($id);
-        
-
+    
         $saveitem = new SaveForLater;
         $saveitem->id = $item->id;
         $saveitem->product_name = $item->product_name;
         $saveitem->product_price = $item->product_price;
+        $saveitem->image = $item->image;
         $saveitem->save();
        
         $item->delete();

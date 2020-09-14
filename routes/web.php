@@ -27,9 +27,15 @@ Route::get('/shop/{product}', 'ShopController@show');
 
 Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::post('/cart', 'CartController@store')->name('cart.store');
-Route::delete('/cart{product}', 'CartController@destroy')->name('cart.destroy');
+Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
+///quantity
+Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
 
 Route::post('/cart/switchToSaveForLater/{product}','CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
+//return proucts in save for later cart
+Route::get('/saved','SaveForLaterController@index')->name('saved.index');
+//remove item from save cart
+Route::delete('/saved/{product}','SaveForLaterController@destroy')->name('saved.destroy');
 
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 

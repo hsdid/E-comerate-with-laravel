@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
+
+
 use Illuminate\Http\Request;
-
-use App\Cart;
-use App\Order;
 use App\SaveForLater;
+use App\Cart;
 
-class CheckoutController extends Controller
+class SaveForLaterController extends Controller
 {
-    public $cart;
+    
     public $saved;
+    public $cart;
 
     public function __construct(){
         
-        $this->cart = new Cart();
         $this->saved = new SaveForLater();
+        $this->cart = new Cart();
     }
     
     /**
@@ -24,25 +25,16 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
-
     public function index()
-    {   
-        
-        $products = Cart::all();
-        
-        //Cart model methods
+    {
+        $products = SaveForLater::all();
+        $inSaved = $this->saved->inSaved();
         $incart = $this->cart->inCart();
-        $inSaved =$this->saved->inSaved();
 
-        $totalPrice = $this->cart->totalPrice();
-       
-
-        return view('checkout')->with([
-            'incart' => $incart,
+        return view('SavedForLater')->with([
+            'products'=>$products,
             'inSaved' => $inSaved,
-            'products' => $products,
-            'totalPrice' => $totalPrice
+            'incart' => $incart
         ]);
     }
 
@@ -53,7 +45,7 @@ class CheckoutController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -64,37 +56,7 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        
-
-        $products = Cart::all();
-
-        //take only product_names with is in your cart
-        foreach($products as $value)
-                $names[] = $value->product_name;
-                
-        //make string
-        $orders = implode(", ",$names);
-
-        $totalPrice = $this->cart->totalPrice();
-
-        //create new order 
-        $order = new Order;
-        $order->name = $request->name;
-        $order->address = $request->address;
-        $order->city = $request->city;
-        $order->province = $request->province;
-        $order->postalcode = $request->postalcode;
-        $order->phone = $request->phone;
-        $order->name_on_card = $request->name_on_card;
-        $order->orders = $orders;
-        $order->totalprice = $totalPrice;
-        
-        $order->save();
-
-        //delete product from cart 
-        Cart::truncate();
-
-        return view('thankyou')->with('success_message','Thank you for buying in our store!');
+        //
     }
 
     /**
@@ -107,7 +69,6 @@ class CheckoutController extends Controller
     {
         //
     }
-    
 
     /**
      * Show the form for editing the specified resource.
@@ -140,6 +101,11 @@ class CheckoutController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = SaveForLater::findOrFail($id);
+        $product->delete();
+
+
+        return redirect()->route('saved.index')->with('succes_message','Item has been saved!');
+      
     }
 }

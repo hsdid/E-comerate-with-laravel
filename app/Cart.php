@@ -15,8 +15,8 @@ class Cart extends Model
     }
     public function inCart() {
         
-        $incart = Cart::all();
-        $incart = $incart->count();
+        $products = Cart::all();
+        $incart = $products->count();
        
         return $incart;
     }
